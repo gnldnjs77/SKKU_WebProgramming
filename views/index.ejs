@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Login Form</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	</head>
+	<body>
+    <% if(typeof(user_id)=='undefined') { %> <!--로그인 안 되어있을 경우-->
+    <div id="" class="login-page">
+      <div class="form">
+        <input id="login_id" type="text" placeholder="user id"/>
+        <input id="login_pwd" type="password" placeholder="user password"/>
+        <button id="btn_login" class="button">login</button>
+        <p id="message" class="message"></p>
+        <p>Not registered? <a href="/login/signup">Create an account</a></p>
+      </div>
+    </div>
+    <% }else{ %>
+    <div class="user-page">
+      <div class="user">
+        <p id="txt_welcome">Welcome <%=user_name%>!</p>
+        <input id="uid" type="hidden" value="<%=uid%>"/>
+        <a href="/login/logout"><button class="button">로그아웃</button></a>
+        <button id="btn_leave" class="button">회원 탈퇴</button>
+        <button id="btn_board" class="button">board</button>
+      </div>
+    </div>
+    <% } %>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/javascripts/login.js"></script>
+	</body>
+</html>

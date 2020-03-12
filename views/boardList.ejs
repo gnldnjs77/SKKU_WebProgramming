@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Board</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	</head>
+	<body>
+		<div class="board-page">
+			<div class="board">
+				<p align="right"><%=user_name %>님 환영합니다.<a href="/users/list"><button>사용자 목록</button></a><a href="/login/logout"><button>Log-out</button></a></p>
+				<h1>글 목록</h1>
+
+				<!-- 검색 시작 -->
+				<div class="search" align="right">
+					<form id="search" action="/board/list/search" method="post">
+						<% if (typeof searchword!='undefined') { %>
+							<input id="searchKey" name="searchKeyword" type="text" value="<%=searchword%>"/>
+						<% } else { %>
+							<input id="searchKey" name="searchKeyword" type="text"/>
+						<% } %>
+						<button type="submit">검색</button>
+						<!-- <input id='btnSubmit' type="button" value="검색"> -->
+					</form>
+				</div>
+				<!-- 검색 종료 -->
+
+
+				<table class="title">
+					<tr>
+						<th width="20%">번호</th>
+						<th width="40%">제목</th>
+						<th width="20%">작성자</th>
+						<th width="20%">등록일</th>
+					</tr>
+				</table>
+				<table class="content">
+					<% if(status == 'OK'){ %> <!--뒤에껀 없어도 됨-->
+						<%if(data.length ==0) { %>
+							<tr>
+								<td colspan="4">데이터가 없습니다.</td>
+							</tr>
+						<%} else { %>
+							<% data.forEach(function(item, index){%> <!--앞에껀 없어도 됨-->
+								<tr>
+									<td width="20%"><%=item.bid %></td>
+									<td width="40%"><a href="/board/update?bid=<%=item.bid%>"><%=item.title %></a></td>
+									<td width="20%"><%=item.user_name %></td>
+									<td width="20%"><%=item.cdate2 %></td>
+								</tr>
+							<% }); %>
+						<%} %>
+					<%} else {%>
+					<tr>
+						<td colspan="4">에러 잠시후 다시 시도하세요.</td>
+					</tr>
+					<% } %>
+				</table>
+				<div align="right"><button id="btn_board_new">새글 등록</button></div>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="/javascripts/board.js"></script>
+	</body>
+</html>

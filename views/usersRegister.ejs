@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>user</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	</head>
+	<body>
+		<div class="board-page">
+			<div class="board">
+                <h1>사용자 등록</h1>
+                <div class="form">
+                    <input id="user_name" type="text" placeholder="user name"/>
+                    <input id="login_id" type="text" placeholder="user id"/>
+                    <button id="btn_check_id" class="button">Check ID</button>
+                    <p id="message_id" class="message"></p>
+
+                    <input id="login_pwd" type="text" placeholder="user password"/>
+                    <br>
+                    <input id="email" type="text" placeholder="email"/>
+                    <p id="message" class="message"></p>
+                </div>
+				<div align="right">
+                    <button id="btn_signup">사용자 등록</button>
+                    <a href="/users/list"><button id="btn_user_list">사용자 목록</button></a>
+                </div>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="/javascripts/users.js"></script>
+	</body>
+</html>

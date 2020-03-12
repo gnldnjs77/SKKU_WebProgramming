@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Board</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	</head>
+	<body>
+		<div class="board-page">
+			<div class="board">
+				<h1>수정</h1>
+				<% if (status=='OK') {%>
+					<% if(typeof data != 'undefined') { %>
+						<% if (data.length == 0) {%>
+							<div class="board-form">
+								<p>삭제된 게시물입니다.</p>
+							</div>
+						<% } else { %>
+							<div align="right">작성자: <%=data[0].user_name%></div>
+							<div class="board-form">
+								<input id="bid" type="hidden" value="<%=data[0].bid%>"/>
+								<input id="board_title" type="text" value="<%=data[0].title%>"/>
+								<textarea id="board_content" rows="10"><%=data[0].content%></textarea>
+							</div>
+							<div align="right">
+								<% if (user_id == data[0].user_id) { %> <!--글 작성자만 수정, 삭제 가능-->
+									<button id="btn_board_update">수정</button>
+									<button id="btn_board_delete">삭제</button>
+								<% } else {%> <!--입력창 수정 불가하게 만들기-->
+									<script>
+										document.getElementById("board_title").disabled = true;
+										document.getElementById("board_content").disabled = true;
+									</script>
+								<% } %>
+								<button id="btn_board_list">목록</button>
+							</div>
+						<% } %>
+					<% } else {%> <!--data가 undefined-->
+						<div class="board-form">
+							<p>게시물을 불러오는 중 오류가 발생했습니다.</p>
+						</div>
+					<% } %>
+				<% } else { %>
+					<div class="board-form">
+						<p>게시물을 불러오는 중 오류가 발생했습니다.</p>
+					</div>
+				<% } %>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="/javascripts/board.js"></script>
+	</body>
+</html>
